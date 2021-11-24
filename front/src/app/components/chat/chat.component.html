@@ -1,0 +1,17 @@
+
+<ul class="messages">
+    <li *ngFor="let message of messageService.messages">
+       <strong>{{message.username}}</strong> {{message.message}}
+    </li>
+</ul>
+
+<form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+
+<textarea formControlName="message"></textarea>
+
+
+<input type="submit" value="Envoyer">
+
+</form>
+
+<input type="button" value="logout" (click)="logout()">
