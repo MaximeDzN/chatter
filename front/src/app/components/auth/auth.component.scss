@@ -1,0 +1,19 @@
+@import "../../../assets/scss/colors.scss";
+
+.login__form {
+    background-color: $yellow;
+    height: 20em;
+    width:30em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.form__error {
+    margin:1em;
+    height: 5em;
+    color:red;
+    font-size: 0.8em;
+}

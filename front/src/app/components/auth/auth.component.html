@@ -1,7 +1,32 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
+<div class="fullpage__content">
+    <h1>CHATTER</h1>
+    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="input__container">
+            <input type="text" formControlName="username" placeholder="Nom d'utilisateur">
+            <span class="input__border"></span>
+        </div>
+        <div class="input__container">
+            <input type="password" formControlName="password" placeholder="Mot de passe">
+            <span class="input__border"></span>
+        </div>
 
-    <input type="text" formControlName="username" placeholder="username">
-    <input type="password" formControlName="password" placeholder="password">
-    <input type="submit" value="envoyer">
 
-</form>
+
+        <div class="form__error">
+            <ng-container *ngIf="submitted">
+                <ng-container *ngIf="f['username'].errors">
+                    <p *ngIf="f['username'].errors['required']">Vous devez fournir un login</p>
+                </ng-container>
+                <ng-container *ngIf="f['password'].errors">
+                    <p *ngIf="f['password'].errors['required']">Vous devez fournir un mot de passe</p>
+                    <p *ngIf="f['password'].errors['noToken']">Login ou mot de passe incorrect</p>
+                    <p *ngIf="f['password'].errors['unreachable']">Serveur non joignable</p>
+
+                </ng-container>
+            </ng-container>
+
+        </div>
+        <input type="submit" value="envoyer">
+
+    </form>
+</div>

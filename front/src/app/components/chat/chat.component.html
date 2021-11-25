@@ -1,17 +1,17 @@
-
-<ul class="messages">
-    <li *ngFor="let message of messageService.messages">
-       <strong>{{message.username}}</strong> {{message.message}}
-    </li>
-</ul>
-
-<form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-
-<textarea formControlName="message"></textarea>
-
-
-<input type="submit" value="Envoyer">
-
-</form>
-
-<input type="button" value="logout" (click)="logout()">
+<div class="fullpage__content">
+    <div class="messages" #chat>
+        <ng-container *ngFor="let message of messageService.messages" #messages>
+            <div class="message" [ngClass]=" message.username === user.username ? 'message-right' : 'message-left' ">
+                <strong class="message__username">{{message.username}}</strong> <br />
+                <span>{{message.message}}</span> <br />
+                <span class="message__date">{{message.createdAt | date:'dd/MM/yyyy'}}</span>
+            </div>
+        </ng-container>
+    </div>
+    <form class="form__chat" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+        <div class="chat__input__container">
+            <textarea class="chat__input" (keydown.enter)="preventAction($event)" (keyup.enter)="sendMessage()" formControlName="message" placeholder="Entrez votre texte"></textarea>
+            <input class="chat__submit" type="submit" value="Envoyer">
+        </div>
+    </form>
+</div>

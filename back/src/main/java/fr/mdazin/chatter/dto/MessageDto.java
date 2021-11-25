@@ -2,6 +2,8 @@ package fr.mdazin.chatter.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,5 +15,6 @@ public class MessageDto {
 
     private  String message;
 
+    private LocalDateTime createdAt;
 
 }

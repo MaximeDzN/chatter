@@ -8,6 +8,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import java.time.LocalDateTime;
+
 @CrossOrigin
 @Controller
 public class MessageController {
@@ -21,6 +23,7 @@ public class MessageController {
 
     @MessageMapping("/send/message")
     public void getMessages(MessageDto dto){
+        dto.setCreatedAt(LocalDateTime.now());
         this.template.convertAndSend("/message",dto);
     }
 

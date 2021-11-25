@@ -1,11 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Client, } from "@stomp/stompjs";
+import { Client } from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
-import { client } from "stompjs";
 
 import { ServerConfig } from "../config/server.config";
 import { Message } from "../models/message";
-import { User } from "../models/user";
 import { AuthService } from "./auth.service";
 
 @Injectable({
@@ -35,8 +33,8 @@ export class MessageService {
 
         this.stompClient.onConnect = (frame) => {
             this.stompClient.subscribe("/message",(message)=> {
+                console.log(JSON.parse(message.body));
                 this.messages.push(JSON.parse(message.body));
-        
             });
         }
 
@@ -61,6 +59,7 @@ export class MessageService {
                 destination:'/app/send/message',
                 body:  JSON.stringify(message),
             });
+
         } catch(error){
             console.log(error);
         }

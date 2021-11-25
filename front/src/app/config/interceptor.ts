@@ -22,7 +22,7 @@ export class Interceptor implements HttpInterceptor {
         url: string = "chatter/api/Auth";
         
         private handleAuthError(err: HttpErrorResponse): Observable<any> {
-            return throwError(() => new Error(err.message));
+            return throwError(() => err);
         }
 
     intercept(req: HttpRequest<any>, next: HttpHandler){  
