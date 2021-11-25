@@ -19,7 +19,6 @@ public class AuthController {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-
     @Autowired
     private AuthService authService;
 

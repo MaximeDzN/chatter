@@ -1,16 +1,22 @@
-package fr.mdazin.chatter.dto;
+package fr.mdazin.chatter.model;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
+@Entity
+@Table
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class MessageDto {
+public class Message {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String username;
@@ -18,5 +24,6 @@ public class MessageDto {
     private  String message;
 
     private LocalDateTime createdAt;
+
 
 }

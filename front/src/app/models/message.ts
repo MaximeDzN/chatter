@@ -6,6 +6,7 @@ export class Message {
         this.createdAt = createdAt;
     }
 
+    id!:number;
     username: string;
     message: string;
     createdAt: Date;

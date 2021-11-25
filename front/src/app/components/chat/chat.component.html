@@ -4,7 +4,7 @@
             <div class="message" [ngClass]=" message.username === user.username ? 'message-right' : 'message-left' ">
                 <strong class="message__username">{{message.username}}</strong> <br />
                 <span>{{message.message}}</span> <br />
-                <span class="message__date">{{message.createdAt | date:'dd/MM/yyyy'}}</span>
+                <span class="message__date">{{message.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
             </div>
         </ng-container>
     </div>

@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit {
   get f() { return this.messageForm.controls; }
 
   ngOnInit(): void {
-
+    this.messageService.findAll();
   }
 
   ngAfterViewInit() {

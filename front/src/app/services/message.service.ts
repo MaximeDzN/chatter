@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Client } from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
@@ -13,11 +14,12 @@ import { AuthService } from "./auth.service";
 export class MessageService {
 
     API_URL = `${this.serverConfig.API_URL}/socket`;
+    API_URL_2 = `${this.serverConfig.API_URL}/Message`;
     public messages: Message[] = [];
     token: string = this.authService.getToken() || '';
     private stompClient: Client
 
-    constructor(private serverConfig: ServerConfig, private authService: AuthService) {
+    constructor(private serverConfig: ServerConfig, private authService: AuthService, private http:HttpClient) {
         const API_URL = `${this.API_URL}`;
         const token = this.token;
 
@@ -33,7 +35,6 @@ export class MessageService {
 
         this.stompClient.onConnect = (frame) => {
             this.stompClient.subscribe("/message",(message)=> {
-                console.log(JSON.parse(message.body));
                 this.messages.push(JSON.parse(message.body));
             });
         }
@@ -50,10 +51,7 @@ export class MessageService {
         this.stompClient.activate();
     }
 
-
-
     sendMessage(message: Message): void{ 
-        console.log(message);
         try {
             this.stompClient.publish({
                 destination:'/app/send/message',
@@ -63,11 +61,15 @@ export class MessageService {
         } catch(error){
             console.log(error);
         }
-        
-
     }
 
-
+    findAll(){
+        this.http.get<Message[]>(`${this.API_URL_2}/findAll`).subscribe({
+            next: (messages) => {
+                 this.messages =messages.sort((a,b) => a.id - b.id);
+              },
+        });
+    }
 
 
 }
