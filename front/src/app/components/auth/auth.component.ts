@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { RegisterdialogComponent } from 'src/app/dialogs/registerdialog/registerdialog.component';
 import { LoginRequest } from 'src/app/models/loginRequest';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -21,10 +24,17 @@ export class AuthComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  constructor(public formBuilder: FormBuilder, public authService: AuthService) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    public authService: AuthService,
+    private router: Router) { }
 
 
   ngOnInit(): void {
+
+    if(!this.authService.isAuth())
+      this.router.navigate(['/']);
 
     this.loginForm.valueChanges.subscribe(value => {
       this.submitted = false;
@@ -36,7 +46,6 @@ export class AuthComponent implements OnInit {
   login(): void {
     this.submitted = true;
     if (this.loginForm.valid) {
-
       this.authService.signin(new LoginRequest(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)).subscribe({
         next: (token) => {
           localStorage.setItem("token", token.token);
@@ -60,6 +69,14 @@ export class AuthComponent implements OnInit {
 
       });
     }
+  }
+
+  registerDialog() {
+    const dialogRef = this.dialog.open(RegisterdialogComponent, {
+        panelClass:'register__dialog'
+    });
+
+
   }
 
 }
