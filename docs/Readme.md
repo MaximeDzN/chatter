@@ -1,5 +1,5 @@
 # Chatter 3000 the best of the best 
-#### Réalisé par Maxime Dazin
+#### Réalisé par MaximeDzN
 
 ### 1.Prérequis
 
