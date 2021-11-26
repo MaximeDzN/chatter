@@ -17,7 +17,8 @@ export class MessageService {
     API_URL_2 = `${this.serverConfig.API_URL}/Message`;
     public messages: Message[] = [];
     token: string = this.authService.getToken() || '';
-    private stompClient: Client
+    private stompClient: Client;
+    room!:number;
 
     constructor(private serverConfig: ServerConfig, private authService: AuthService, private http:HttpClient) {
         const API_URL = `${this.API_URL}`;
@@ -32,29 +33,37 @@ export class MessageService {
             heartbeatOutgoing: 4000,
         });
 
-
-        this.stompClient.onConnect = (frame) => {
-            this.stompClient.subscribe("/message",(message)=> {
-                this.messages.push(JSON.parse(message.body));
-            });
-        }
-
-
         this.stompClient.webSocketFactory = function () {
             return new SockJS(`${API_URL}?token=${token}`) as any;
+        }
+
+        this.stompClient.onConnect = (frame) => {
+            this.stompClient.subscribe("/message/"+this.room,(message)=> {
+                this.messages.push(JSON.parse(message.body));
+            });
         }
 
 
         this.stompClient.onStompError = (frame) => {
             console.log(frame);
         }
+        
+    }
+
+
+    connect(room:number){
+        this.room = room;
         this.stompClient.activate();
+    }
+
+    disconnect(){
+        this.stompClient.deactivate();
     }
 
     sendMessage(message: Message): void{ 
         try {
             this.stompClient.publish({
-                destination:'/app/send/message',
+                destination:'/app/send/message/'+message.chatRoomId,
                 body:  JSON.stringify(message),
             });
 

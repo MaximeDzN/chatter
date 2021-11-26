@@ -1,0 +1,8 @@
+.page {
+    display: grid; 
+  grid-template-columns: 0.1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". ."; 
+}

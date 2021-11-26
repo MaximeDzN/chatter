@@ -33,7 +33,9 @@ public class MessageService {
 
 
     public MessageDto messageToDto(Message message){
-        return modelMapper.map(message,MessageDto.class);
+        MessageDto messageDto = modelMapper.map(message,MessageDto.class);
+        messageDto.setChatRoomId(message.getChatRoom().getId());
+        return messageDto;
     }
 
     public Message dtoToMessage(MessageDto messageDto){

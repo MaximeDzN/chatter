@@ -9,12 +9,16 @@ import { ChatComponent } from './components/chat/chat.component';
 import { Interceptor } from './config/interceptor';
 import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './components/auth/auth.component';
+import { NavbarComponent } from './components/global/navbar/navbar.component';
+import { HomeComponent } from './components/global/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     AuthComponent,
+    NavbarComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

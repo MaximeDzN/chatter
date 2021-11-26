@@ -56,7 +56,7 @@ input:focus ~ .input__border {
   }
   
 
-input[type="submit"] {
+input[type="submit"],input[type="button"] {
     background-image: linear-gradient(45deg, lighten($color: $purple, $amount: 5) 50%, $purple 50%);
     background-size: 250% 100%;
     background-position: right bottom;
@@ -66,11 +66,10 @@ input[type="submit"] {
     font: inherit;
     border: none;
     padding: 0;
-
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,input[type="button"]:hover {
     background-position: left top;
 }
 

@@ -4,8 +4,7 @@ package fr.mdazin.chatter.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-
+import java.util.Set;
 
 @Entity
 @Table
@@ -14,21 +13,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Message {
+public class ChatRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private Integer authorId;
+    private Integer userA;
 
-    private  String message;
+    private Integer userB;
 
-    private LocalDateTime createdAt;
+    @OneToMany(mappedBy="chatRoom",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Message> messages;
 
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private ChatRoom chatRoom;
 
 
 }

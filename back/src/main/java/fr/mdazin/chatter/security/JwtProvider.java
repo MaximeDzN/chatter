@@ -33,8 +33,8 @@ public class JwtProvider {
         User principal = (User)authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(principal.getUsername())
-                .claim("role",principal.getRole())
                 .claim("id", principal.getId())
+                .claim("role",principal.getRole())
                 .claim("enabled",principal.getEnabled())
                 .signWith(key)
                 .compact();

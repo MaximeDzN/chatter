@@ -1,0 +1,11 @@
+<div class="navbar">
+    <div class="menu">
+        <input type="button" value="Déconnexion" (click)="logout()">
+        <hr>
+        <ng-container *ngFor="let user of users">
+            <div routerLink="/chat/{{user.id}}" class="menu__item">
+                <span >{{user.username}}</span>
+            </div>
+        </ng-container>
+    </div>
+</div>

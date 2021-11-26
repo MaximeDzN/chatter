@@ -1,8 +1,7 @@
 <div class="fullpage__content">
     <div class="messages" #chat>
         <ng-container *ngFor="let message of messageService.messages" #messages>
-            <div class="message" [ngClass]=" message.username === user.username ? 'message-right' : 'message-left' ">
-                <strong class="message__username">{{message.username}}</strong> <br />
+            <div class="message" [ngClass]=" message.authorId === user.id ? 'message-right' : 'message-left' ">
                 <span>{{message.message}}</span> <br />
                 <span class="message__date">{{message.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
             </div>

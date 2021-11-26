@@ -44,7 +44,8 @@ export class AuthService {
     }
 
     decodedTokenToUser(): User {
-        return new User(this.getDecodedToken().sub);
+        let decode = this.getDecodedToken();
+        return new User(decode.id,decode.sub,decode.role,decode.enabled,decode.createdAt);
     }
 
     getToken(): string | null {
@@ -54,6 +55,7 @@ export class AuthService {
 
     logout(): void {
         localStorage.removeItem("token");
+        window.location.reload();
     }
 
 

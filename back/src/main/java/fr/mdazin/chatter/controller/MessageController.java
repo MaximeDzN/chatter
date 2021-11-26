@@ -6,6 +6,7 @@ import fr.mdazin.chatter.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -34,11 +35,11 @@ public class MessageController {
         this.template = template;
     }
 
-    @MessageMapping("/send/message")
-    public void getMessages(MessageDto dto){
+    @MessageMapping("/send/message/{id}")
+    public void getMessages(@DestinationVariable Integer id, MessageDto dto){
         dto.setCreatedAt(LocalDateTime.now());
         messageService.save(dto);
-        this.template.convertAndSend("/message",dto);
+        this.template.convertAndSend("/message/"+id,dto);
     }
 
     @GetMapping("/findAll")

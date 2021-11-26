@@ -1,3 +1,8 @@
 <cf-auth *ngIf="!isAuth"></cf-auth>
 
-<cf-chat *ngIf="isAuth"></cf-chat>
+<div *ngIf="isAuth" class="page">
+    <cf-navbar></cf-navbar>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

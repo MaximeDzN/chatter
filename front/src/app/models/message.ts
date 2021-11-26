@@ -1,13 +1,17 @@
+import { ChatRoom } from "./chatRoom";
+
 export class Message {
 
-    constructor(username:string, message:string, createdAt:Date){
-        this.username = username;
+    constructor(authorId:number, message:string, createdAt:Date, chatRoomId: number){
+        this.authorId = authorId;
         this.message = message;
         this.createdAt = createdAt;
+        this.chatRoomId = chatRoomId;
     }
 
     id!:number;
-    username: string;
+    authorId: number;
     message: string;
     createdAt: Date;
+    chatRoomId: number;
 }
