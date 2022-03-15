@@ -5,7 +5,7 @@ variable "auteur" {
 
 variable "ec2_name" {
   type    = string
-  default = "GestionGlasses"
+  default = "chatter"
 }
 
 variable "zone_dispo" {
@@ -56,5 +56,5 @@ variable "git_proprietaire" {
 
 variable "git_projet" {
   type    = string
-  default = "miniprojet"
+  default = "chatter"
 }
