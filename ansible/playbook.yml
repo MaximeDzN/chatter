@@ -41,10 +41,10 @@
     - name: build docker image
       become: true
       shell:
-        cmd: "sudo docker build -t testchatter:latest --no-cache . -f ~/chatter/docker/backend/Dockerfile"
+        cmd: "sudo docker build -t testchatter:latest --no-cache . -f /home/ubuntu/chatter/docker/backend/Dockerfile"
 
 
     - name: Run container
       become: True
       shell:
-        cmd: "sudo docker-compose -f ~/chatter/docker/docker-compose.yml up -d"
+        cmd: "sudo docker-compose -f /home/ubuntu/chatter/docker/docker-compose.yml up -d"
