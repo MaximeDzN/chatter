@@ -1,2 +1,4 @@
 .idea/
 .aws/
+terraform/app/.terraform.lock.hcl
+terraform/app/ip_connection.txt
