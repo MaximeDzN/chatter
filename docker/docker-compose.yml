@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  docker-mysql:
+    image: mysql:8.0
+    container_name: docker-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chatter
+      MYSQL_USER: spring
+      MYSQL_PASSWORD: spring
+    ports:
+      - "3306:3306"
+  spring:
+    container_name: springapp
+    restart: always
+    image: testchatter:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql/chatter?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: spring
+      SPRING_DATASOURCE_PASSWORD: spring
+      SPRING_PORT: 5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - docker-mysql

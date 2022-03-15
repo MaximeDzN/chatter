@@ -1,0 +1,25 @@
+FROM nginx:latest
+
+
+LABEL MAINTENER="Maxime Dazin"
+
+
+RUN apk update && \
+    apk upgrade && \
+    apk add git &&\
+    apk add nodejs &&\
+    apk add npm 
+
+RUN git clone https://github.com/MaximeDzN/chatter.git /chatter
+
+WORKDIR /chatter/front
+
+RUN npm i
+
+RUN ng build --prod
+
+RUN addgroup -S angular && adduser -S angular -G angular
+
+USER angular:angular
+
+ENTRYPOINT ["java","-jar","app.jar"]
