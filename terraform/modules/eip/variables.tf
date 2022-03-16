@@ -1,4 +1,4 @@
-variable "auteur" {
+variable "author" {
   type    = string
-  default = "allan & brice"
+  default = "MaximeDzN"
 }

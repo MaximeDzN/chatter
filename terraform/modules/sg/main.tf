@@ -1,99 +1,67 @@
 resource "aws_security_group" "sg" {
-  name        = "${var.auteur}-sg"
+  name        = "${var.author}-sg"
   description = "${var.description_sg_group}"
 
   ingress {
-    description      = "${var.description_ssh}"
-    from_port        = var.port_ssh
-    to_port          = var.port_ssh
-    protocol         = "${var.protocol}"
+    description      = "authorize to reach port 22 (ssh)"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "${var.protocol_tcp}"
+    cidr_blocks      = ["${var.cidr_blocks}"]
+    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
+  }
+
+
+  ingress {
+    description      = "authorize to reach port 80 (http)"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "${var.protocol_tcp}"
     cidr_blocks      = ["${var.cidr_blocks}"]
     ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
   }
 
   ingress {
-    description      = "${var.description_http}"
-    from_port        = var.port_http
-    to_port          = var.port_http
-    protocol         = "${var.protocol}"
-    cidr_blocks      = ["${var.cidr_blocks}"]
-    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
-  }
-
-  ingress {
-    description      = "${var.description_https}"
-    from_port        = var.port_https
-    to_port          = var.port_https
-    protocol         = "${var.protocol}"
+    description      = "authorize to reach port 443 (https)"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "${var.protocol_tcp}"
     cidr_blocks      = ["${var.cidr_blocks}"]
     ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
   }
 
   egress {
-    description      = "${var.description_egress}"
-    from_port        = var.port_egress
-    to_port          = var.port_egress
-    protocol         = "${var.protocol_egress}"
+    description      = "Authorize all devices to go reach outside"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
     cidr_blocks      = ["${var.cidr_blocks}"]
     ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
   }
 
   
   ingress {
-    description      = "${var.description_spring_app}"
-    from_port        = var.port_spring
-    to_port          = var.port_spring
-    protocol         = "${var.protocol}"
+    description      = "Authorize to reach port of the application 5000"
+    from_port        = 5000
+    to_port          = 5000
+    protocol         = "${var.protocol_tcp}"
     cidr_blocks      = ["${var.cidr_blocks}"]
     ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
   }
 
-  egress {
-    description      = "${var.description_egress}"
-    from_port        = var.port_egress
-    to_port          = var.port_egress
-    protocol         = "${var.protocol_egress}"
-    cidr_blocks      = ["${var.cidr_blocks}"]
-    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
-  }
 
   ingress {
-    description      = "${var.description_mysql}"
-    from_port        = var.port_mysql
-    to_port          = var.port_mysql
-    protocol         = "${var.protocol}"
+    description      = "Authorize to reach port 3306 (mysql)"
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "${var.protocol_tcp}"
     cidr_blocks      = ["${var.cidr_blocks}"]
     ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
   }
 
-  egress {
-    description      = "${var.description_egress}"
-    from_port        = var.port_egress
-    to_port          = var.port_egress
-    protocol         = "${var.protocol_egress}"
-    cidr_blocks      = ["${var.cidr_blocks}"]
-    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
-  }
 
-    ingress {
-    description      = "${var.description_phpmyadmin}"
-    from_port        = var.port_phpmyadmin
-    to_port          = var.port_phpmyadmin
-    protocol         = "${var.protocol}"
-    cidr_blocks      = ["${var.cidr_blocks}"]
-    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
-  }
-
-  egress {
-    description      = "${var.description_egress}"
-    from_port        = var.port_egress
-    to_port          = var.port_egress
-    protocol         = "${var.protocol_egress}"
-    cidr_blocks      = ["${var.cidr_blocks}"]
-    ipv6_cidr_blocks = ["${var.ipv6_cidr_blocks}"]
-  }
-
+ 
   tags = {
-    Name = "${var.auteur}-sg"
+    Name = "${var.author}-sg"
   }
 }

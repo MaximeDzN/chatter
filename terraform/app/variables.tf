@@ -1,4 +1,4 @@
-variable "zone_dispo" {
+variable "area" {
   type    = string
   default = "us-east-1"
 }
@@ -8,7 +8,7 @@ variable "credentials" {
   default = "../.aws/credentials"
 }
 
-variable "auteur" {
+variable "author" {
   type    = string
-  default = "allan & brice"
+  default = "MaximeDzN"
 }

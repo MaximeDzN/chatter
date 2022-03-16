@@ -1,6 +1,6 @@
-variable "auteur" {
+variable "author" {
   type    = string
-  default = "allan & brice"
+  default = "MaximeDzN"
 }
 
 variable "ec2_name" {
@@ -8,53 +8,53 @@ variable "ec2_name" {
   default = "chatter"
 }
 
-variable "zone_dispo" {
+variable "area" {
   type    = string
   default = "us-east-1b"
 }
 
-variable "type_instance" {
+variable "instance_type" {
   type    = string
   default = "t2.nano"
 }
 
-variable "cle_ssh" {
+variable "ssh_key" {
   type    = string
   default = "usKey"
 }
 
-variable "securite_groupe" {
+variable "security_group" {
   type    = string
   default = "NULL"
 }
 
-variable "ip_public" {
+variable "public_ip" {
   type    = string
   default = "NULL"
 }
 
-variable "utilisateur_ssh" {
+variable "ssh_user" {
   type    = string
   default = "NULL"
 }
 
-variable "id_compte_ubuntu" {
+variable "ubuntu_account_id" {
   type    = string
   default = "099720109477"
 }
 
-variable "nom_ubuntu_ami" {
+variable "ubuntu_ami_name" {
   type    = string
   default = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
 }
 
 
-variable "git_proprietaire" {
+variable "git_owner" {
   type    = string
   default = "maximeDzN"
 }
 
-variable "git_projet" {
+variable "git_project" {
   type    = string
   default = "chatter"
 }
