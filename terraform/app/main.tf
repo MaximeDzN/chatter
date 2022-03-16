@@ -1,22 +1,22 @@
 #Instanciation module sg
 module "sg" {
   source        = "../modules/sg"
-  auteur = "${var.author}"
+  author = "${var.author}"
 }
 
 # Instanciation module eip
 module "eip" {
   source        = "../modules/eip"
-  auteur = "${var.author}"
+  author = "${var.author}"
 }
 # Instanciation module ec2
 module "ec2" {
   source        = "../modules/ec2"
-  auteur        = "${var.author}"
-  type_instance = "t2.micro"
-  securite_groupe= "${module.sg.out_sg_nom}"
-  ip_public = "${module.eip.out_eip_public_ip}"
-  utilisateur_ssh = "ubuntu"
+  author        = "${var.author}"
+  instance_type = "t2.micro"
+  security_group= "${module.sg.out_sg_nom}"
+  public_ip = "${module.eip.out_eip_public_ip}"
+  ssh_user = "ubuntu"
 }
 
 

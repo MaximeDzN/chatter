@@ -1,4 +1,4 @@
-variable "auteur" {
+variable "author" {
   type    = string
   default = "MaximeDzN"
 }
@@ -6,6 +6,11 @@ variable "auteur" {
 variable "protocol_tcp" {
   type    = string
   default = "tcp"
+}
+
+variable "sg_group_desc" {
+  type    = string
+  default = "Autorise le traffic http, https et ssh"
 }
 
 variable "cidr_blocks" {

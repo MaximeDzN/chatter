@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg" {
   name        = "${var.author}-sg"
-  description = "${var.description_sg_group}"
+  description = "${var.sg_group_desc}"
 
   ingress {
     description      = "authorize to reach port 22 (ssh)"
